@@ -15,11 +15,11 @@ final class ChatManager {
     private var client: ChatClient!
     
     private let tokens = [
-        "rustam" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoicnVzdGFtIn0.tHgGYgKPFsQYuAB59c7cPI1RxErNZIJIW4g7j_JfH-Y",
-        "stevejobs" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoic3RldmVqb2JzIn0.5XF55YhwLOuxQ89N_IVBZaHgAUlpdX7uWfJxx2yC7tY"]
+        "rustam" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoicnVzdGFtIn0.wUEFQkeDbL50QRLfH07j2v_H_TYJ09HuBikinCFrbhc",
+        "stevejobs" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoic3RldmVqb2JzIn0.JeI2JrcoMEPBLQSE97_tGOzecqlqO3stjvfYQjBip3c"]
     
     func setup() {
-        let client = ChatClient(config: .init(apiKey: .init("4652rvusfd2b")))
+        let client = ChatClient(config: .init(apiKey: .init("c7as3p6zcztg")))
         self.client = client
     }
     
@@ -54,7 +54,7 @@ final class ChatManager {
     }
     
     public func createChannelList() -> UIViewController? {
-        guard let id = currentUser else {return nil}
+        guard let id = currentUser else { return nil }
         let list = client.channelListController(query: .init(filter: .containMembers(userIds: [id])))
         let vc = ChatChannelListVC()
         vc.content = list
@@ -63,8 +63,8 @@ final class ChatManager {
     }
     
     public func createNewChannel(name: String) {
-        guard let current = currentUser else {return}
-        let keys: [String] = tokens.keys.filter({ $0 != current }).map{$0}
+        guard let current = currentUser else { return }
+        let keys: [String] = tokens.keys.filter({ $0 != current }).map{ $0 }
         do {
             let result = try client.channelController(createChannelWithId: .init(type: .messaging, id: name),
                                                       name: name,
